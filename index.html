@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>GDA Money | Cartes prépayées</title>
-    <meta name="description" content="Parody - Digital Agency Portfolio Html Template">
+    <meta name="description" content="GDA Money | Cartes prépayées">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="Assetsmoney/logo/GDAMONEY.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -316,7 +316,7 @@
         
         /* Virtual Card */
         .virtual-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: transparent;
             border-radius: 20px;
             padding: 32px;
             color: #fff;
@@ -329,13 +329,7 @@
         }
         
         .virtual-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            display: none;
         }
         
         .card-chip,
@@ -498,6 +492,33 @@
                 padding: 24px;
             }
         }
+        
+        /* Header Auto-Hide on Scroll */
+        #header-sticky {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        #header-sticky.header-hide {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        #header-sticky.header-show {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+            background: #fff;
+            box-shadow: 0px 1px 3px 0px rgba(23, 23, 24, 0.12), 0px -1px 0px 0px rgba(36, 62, 21, 0.14);
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 
@@ -509,26 +530,17 @@
             <div class="spinner">
             </div>
             <div class="txt-loading">
-                <span data-text-preloader="P" class="letters-loading">
-                    P
-                </span>
-                <span data-text-preloader="A" class="letters-loading">
-                    A
-                </span>
-                <span data-text-preloader="R" class="letters-loading">
-                    R
-                </span>
-                <span data-text-preloader="O" class="letters-loading">
-                    O
+                <span data-text-preloader="G" class="letters-loading">
+                    G
                 </span>
                 <span data-text-preloader="D" class="letters-loading">
                     D
                 </span>
-                <span data-text-preloader="Y" class="letters-loading">
-                    Y
+                <span data-text-preloader="A" class="letters-loading">
+                    A
                 </span>
             </div>
-            <p class="text-center">Loading</p>
+            <p class="text-center">Money</p>
         </div>
         <div class="loader">
             <div class="row">
@@ -608,8 +620,8 @@
                 <div class="row align-items-center">
                     <div class="col-xl-2 col-4">
                         <div class="logo">
-                            <a class="logo-1" href="index.html"><img data-width="96" src="assets/img/logo/logo-yellow.png" alt="Logo"></a>
-                            <a class="logo-2 d-none" href="index.html"><img data-width="96" src="assets/img/logo/logo-grey-2.png" alt="Logo"></a>
+                            <a class="logo-1" href="index.html"><img data-width="100" src="Assetsmoney/logo/MONEYblanc.png" alt="Logo"></a>
+                            <a class="logo-2 d-none" href="index.html"><img data-width="100" src="Assetsmoney/logo/money.png" alt="Logo"></a>
                         </div>
                     </div>
                     <div class="col-xl-7 d-none d-xl-block">
@@ -636,7 +648,7 @@
                                             <path d="M15.7767 7.47384C15.9198 7.62604 16 7.8316 16 8.04582C16 8.26004 15.9198 8.4656 15.7767 8.61781L8.92138 15.8429C8.77516 15.9903 8.58094 16.0729 8.37867 16.0737C8.27759 16.0732 8.17746 16.0529 8.08351 16.0134C7.94489 15.9522 7.8266 15.8488 7.74358 15.7167C7.66056 15.5845 7.61651 15.4294 7.61698 15.2709V8.84861H0.761697C0.559684 8.84861 0.365942 8.76404 0.223096 8.61348C0.0802502 8.46292 0 8.25874 0 8.04582C0 7.83291 0.0802502 7.62871 0.223096 7.47817C0.365942 7.32761 0.559684 7.24304 0.761697 7.24304H7.61698V0.820711C7.61651 0.662221 7.66056 0.507129 7.74358 0.374983C7.8266 0.242834 7.94489 0.139545 8.08351 0.0781301C8.2242 0.0202932 8.37756 0.00562 8.52585 0.0358103C8.67412 0.065999 8.81125 0.139818 8.92138 0.248724L15.7767 7.47384Z" fill="currentColor" />
                                         </svg>
                                     </span>
-                                    <span>Talk With Us</span>
+                                    <span>Nous écrire</span>
                                  </a>
                             </div>
                              <div class="d-inline-block">
@@ -721,7 +733,7 @@
                                         <img class="thumb-3" src="assets/img/hero/hero-2/shape-1.png" alt="">
                                     </div>
                                     <img class="thumb-4 td-btn-bounce" src="assets/img/hero/hero-2/shape-2.png" alt="">
-                                    <img class="thumb-1" src="assets/img/hero/hero-2/thumb.jpg" alt="">
+                                    <img class="thumb-1" src="Assetsmoney/accueil/carte.png" alt="">
                                     <img class="thumb-2 d-none d-sm-inline-block" src="assets/img/hero/hero-2/thumb-2.jpg" alt="">
                                 </div>
                             </div>
@@ -1158,7 +1170,7 @@
                 
 
                 <!-- td-text-slider-2-area-start -->
-                <div class="td-text-slider-2-area fix pb-140">
+                <div class="td-text-slider-2-area fix pb-140" style="margin-top:90px;">
                     <div class="swiper-container td-text-2-home-slider">
                         <div class="swiper-wrapper slide-transtion">
                             <div class="swiper-slide">
@@ -1174,16 +1186,16 @@
                             <div class="swiper-slide">
                                 <div class="td-text-home-2">
                                     <h2>STARTUP AGENCY  GROWING BUSINEES</h2>
-                                </div>
-                            </div>
+                        </div>
+                                 </div>
                             <div class="swiper-slide">
                                 <div class="td-text-home-2">
                                     <h2>GROWING BUSINEES</h2>
+                            </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                                                </div>
+                                            </div>
                 <!-- td-text-slider-2-area-end -->
 
                 <!-- Formulaire de commande - Start (AceCoinPay Design) -->
@@ -1197,10 +1209,10 @@
                                         <div class="step-item completed" data-step="1">
                                             <div class="step-indicator">
                                                 <span class="step-check">✓</span>
-                                            </div>
+                                                </div>
                                             <div class="step-line"></div>
                                             <span class="step-label">Informations personnelles</span>
-                                        </div>
+                                            </div>
                                         <div class="step-item active" data-step="2">
                                             <div class="step-indicator">
                                                 <span class="step-number">2</span>
@@ -1226,17 +1238,17 @@
                                                         <a href="#" class="edit-link">
                                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                                                 <path d="M8.5 1L11 3.5L6.5 8H4V5.5L8.5 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                            </svg>
+                                                        </svg>
                                                             Edit
                                                         </a>
-                                                    </div>
+                                                </div>
                                                     <p class="field-hint">Enter the 16-digit card number on the card</p>
                                                     <div class="card-number-input">
                                                         <span class="card-icon">💳</span>
                                                         <input type="text" id="cardNumber" name="cardNumber" placeholder="2412 - 7512 - 3412 - 3456" maxlength="19" required>
                                                         <span class="check-icon">✓</span>
-                                                    </div>
-                                                </div>
+                                            </div>
+                                        </div>
 
                                                 <div class="form-field">
                                                     <label for="cvv">CVV Number</label>
@@ -1244,8 +1256,8 @@
                                                     <div class="cvv-input">
                                                         <input type="text" id="cvv" name="cvv" placeholder="327" maxlength="4" required>
                                                         <span class="grid-icon">⊞</span>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                </div>
 
                                                 <div class="form-field">
                                                     <label for="expiry">Expiry Date</label>
@@ -1254,8 +1266,8 @@
                                                         <input type="text" id="expiryMonth" name="expiryMonth" placeholder="09" maxlength="2" required>
                                                         <span class="separator">/</span>
                                                         <input type="text" id="expiryYear" name="expiryYear" placeholder="22" maxlength="2" required>
-                                                    </div>
-                                                </div>
+                            </div>
+                        </div>
 
                                                 <div class="form-field">
                                                     <label for="password">Password</label>
@@ -1263,57 +1275,47 @@
                                                     <div class="password-input">
                                                         <input type="password" id="password" name="password" placeholder="........." required>
                                                         <span class="grid-icon">⊞</span>
-                                                    </div>
-                                                </div>
+                    </div>
+                </div>
 
                                                 <button type="submit" class="pay-now-btn">Pay Now</button>
-                                            </div>
+                                </div>
 
                                             <!-- Right Panel - Card & Summary -->
                                             <div class="payment-right">
                                                 <!-- Virtual Card -->
                                                 <div class="virtual-card">
-                                                    <div class="card-chip">🔲</div>
-                                                    <div class="card-wifi">📶</div>
-                                                    <div class="card-holder-name" id="cardHolderName">Jonathan Michael</div>
-                                                    <div class="card-number-display">
-                                                        <span class="card-dots">....</span>
-                                                        <span class="card-last-digits" id="cardLastDigits">3456</span>
-                                                    </div>
-                                                    <div class="card-expiry-display">
-                                                        <span id="cardExpiryMonth">09</span>/<span id="cardExpiryYear">22</span>
-                                                    </div>
-                                                    <div class="card-brand">VISA</div>
-                                                </div>
+                                                    <img src="Assetsmoney/accueil/carte.png" alt="Carte prépayée" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;">
+                            </div>
 
                                                 <!-- Order Summary -->
                                                 <div class="order-summary">
                                                     <div class="summary-item">
                                                         <span class="summary-label">Company</span>
                                                         <span class="summary-value">GDA Money</span>
-                                                    </div>
+                                </div>
                                                     <div class="summary-item">
                                                         <span class="summary-label">Order Number</span>
                                                         <span class="summary-value">1266201</span>
-                                                    </div>
+                            </div>
                                                     <div class="summary-item">
                                                         <span class="summary-label">Product</span>
                                                         <span class="summary-value">Carte VISA UBA</span>
-                                                    </div>
+                                </div>
                                                     <div class="summary-item">
                                                         <span class="summary-label">VAT (20%)</span>
                                                         <span class="summary-value">1 500 FCFA</span>
-                                                    </div>
+                            </div>
                                                     <div class="total-payment">
                                                         <div class="total-label">
                                                             <span>You have to Pay</span>
                                                             <span class="receipt-icon">📄</span>
-                                                        </div>
+                                </div>
                                                         <div class="total-amount" id="totalAmount">9 500 FCFA</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                                     </form>
                                 </div>
                             </div>
@@ -1370,7 +1372,9 @@
                 <!-- td-feature-area-start -->
                 <div class="td-feature-area fix">
                     <div class="fix">
-                        <img data-speed=".9" class="w-100" src="assets/img/bigimage/thumb.jpg" alt="">
+                        <video data-speed=".9" class="w-100" autoplay loop muted playsinline>
+                            <source src="Assetsmoney/accueil/AnimationCarte.mp4" type="video/mp4">
+                        </video>
                     </div>
                     <div class="td-feature-slide-wrap td-feature-2-spacing">
                         <div class="swiper-container td-feature-2-slider">
@@ -1831,6 +1835,42 @@
     <script src="assets/js/ajax-form.js"></script>
     <!--<< main.Js >>-->
     <script src="assets/js/main.js"></script>
+    
+    <!-- Header Auto-Hide on Scroll -->
+    <script>
+        (function() {
+            let lastScrollTop = 0;
+            let scrollThreshold = 100; // Seuil de scroll avant d'activer le comportement
+            const header = document.getElementById('header-sticky');
+            
+            if (!header) return;
+            
+            // Désactiver le comportement sticky par défaut de main.js
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Si on est en haut de page, le header est visible normalement (pas fixe)
+                if (scrollTop < 50) {
+                    header.classList.remove('header-sticky', 'header-hide', 'header-show');
+                    lastScrollTop = scrollTop;
+                    return;
+                }
+                
+                // Si on scroll vers le bas
+                if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                    header.classList.remove('header-show');
+                    header.classList.add('header-hide');
+                }
+                // Si on scroll vers le haut
+                else if (scrollTop < lastScrollTop) {
+                    header.classList.remove('header-hide');
+                    header.classList.add('header-show');
+                }
+                
+                lastScrollTop = scrollTop;
+            }, { passive: true });
+        })();
+    </script>
     
     <!-- Formulaire de commande JavaScript - AceCoinPay -->
     <script>
