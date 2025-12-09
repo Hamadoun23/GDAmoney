@@ -37,7 +37,7 @@
     <style>
         /* AceCoinPay Design - Payment Modal */
         .td-order-form-area {
-            background: linear-gradient(180deg, #FF6A3A 0%, #ffffff 100%);
+            background: url("Assetsmoney/accueil/bg.jpg") center center / cover no-repeat;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -180,6 +180,108 @@
             font-size: 14px;
             font-weight: 600;
             color: #1a1a1a;
+        }
+        
+        /* Operation Choices - Modern Radio Buttons */
+        .operation-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .operation-choices .choice {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .operation-choices .choice::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 106, 58, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .operation-choices .choice:hover::before {
+            left: 100%;
+        }
+        
+        .operation-choices .choice:hover {
+            border-color: #FF6A3A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 106, 58, 0.15);
+        }
+        
+        .operation-choices .choice input[type="radio"] {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #FF6A3A;
+        }
+        
+        .operation-choices .choice input[type="radio"]:checked + span {
+            color: #FF6A3A;
+            font-weight: 600;
+        }
+        
+        .operation-choices .choice:has(input:checked) {
+            border-color: #FF6A3A;
+            background: linear-gradient(135deg, rgba(255, 106, 58, 0.05) 0%, rgba(255, 106, 58, 0.02) 100%);
+            box-shadow: 0 4px 16px rgba(255, 106, 58, 0.2);
+        }
+        
+        .operation-choices .choice span {
+            flex: 1;
+            font-size: 14px;
+            color: #1a1a1a;
+            transition: all 0.3s;
+        }
+        
+        /* Form Inputs with Animation */
+        .form-field input[type="text"],
+        .form-field input[type="email"],
+        .form-field input[type="tel"],
+        .form-field input[type="number"],
+        .form-field input[type="file"] {
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            color: #1a1a1a;
+            background: #fff;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+        }
+        
+        .form-field input[type="text"]:focus,
+        .form-field input[type="email"]:focus,
+        .form-field input[type="tel"]:focus,
+        .form-field input[type="number"]:focus {
+            outline: none;
+            border-color: #FF6A3A;
+            box-shadow: 0 0 0 4px rgba(255, 106, 58, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .form-field input[type="file"] {
+            padding: 12px;
+            cursor: pointer;
+        }
+        
+        .form-field input[type="file"]:hover {
+            border-color: #FF6A3A;
         }
         
         .field-hint {
@@ -389,37 +491,152 @@
         
         /* Order Summary */
         .order-summary {
-            background: #f9fafb;
-            border-radius: 16px;
-            padding: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 106, 58, 0.1);
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 24px 0;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #FF6A3A;
+            position: relative;
+        }
+        
+        .summary-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #FF6A3A;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+            to {
+                width: 60px;
+            }
+        }
+        
+        .summary-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
         
         .summary-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+            padding: 14px 16px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: slideInItem 0.4s ease-out forwards;
         }
         
-        .summary-item:last-of-type {
-            border-bottom: none;
+        .summary-item:nth-child(1) { animation-delay: 0.1s; }
+        .summary-item:nth-child(2) { animation-delay: 0.15s; }
+        .summary-item:nth-child(3) { animation-delay: 0.2s; }
+        .summary-item:nth-child(4) { animation-delay: 0.25s; }
+        .summary-item:nth-child(5) { animation-delay: 0.3s; }
+        .summary-item:nth-child(6) { animation-delay: 0.35s; }
+        .summary-item:nth-child(7) { animation-delay: 0.4s; }
+        .summary-item:nth-child(8) { animation-delay: 0.45s; }
+        
+        @keyframes slideInItem {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .summary-item:hover {
+            background: linear-gradient(135deg, rgba(255, 106, 58, 0.05) 0%, rgba(255, 106, 58, 0.02) 100%);
+            border-color: #FF6A3A;
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(255, 106, 58, 0.1);
+        }
+        
+        .summary-item.updated {
+            animation: pulseUpdate 0.6s ease-out;
+        }
+        
+        @keyframes pulseUpdate {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 4px 16px rgba(255, 106, 58, 0.2);
+            }
         }
         
         .summary-label {
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
+            font-weight: 500;
         }
         
         .summary-value {
             font-size: 14px;
             font-weight: 600;
             color: #1a1a1a;
+            text-align: right;
+            transition: all 0.3s;
+        }
+        
+        .summary-value:not(:empty) {
+            color: #1a1a1a;
+        }
+        
+        .summary-item:has(.summary-value:not(:empty):not(:contains('---'))) .summary-value {
+            color: #FF6A3A;
+        }
+        
+        /* Style pour les valeurs remplies */
+        .summary-value.filled {
+            color: #FF6A3A !important;
+            font-weight: 700;
+        }
+        
+        /* Amélioration visuelle pour les éléments remplis */
+        .summary-item:has(.summary-value.filled) {
+            border-left: 3px solid #FF6A3A;
+            padding-left: 13px;
         }
         
         .total-payment {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid #1a1a1a;
+            margin-top: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, #FF6A3A 0%, #ff8c5a 100%);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(255, 106, 58, 0.3);
+            animation: fadeInUp 0.6s ease-out 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .total-label {
@@ -427,18 +644,44 @@
             justify-content: space-between;
             align-items: center;
             font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+            font-weight: 500;
         }
         
         .receipt-icon {
-            font-size: 16px;
+            font-size: 18px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
         }
         
         .total-amount {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .total-amount.updated {
+            animation: amountPulse 0.5s ease-out;
+        }
+        
+        @keyframes amountPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
         
         /* Focus States */
@@ -464,6 +707,62 @@
         
         .error-message.show {
             display: block;
+        }
+        
+        /* Animation pour les sections qui apparaissent */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Animation pour les champs qui se remplissent */
+        .form-field input:not(:placeholder-shown) {
+            background: linear-gradient(135deg, rgba(255, 106, 58, 0.02) 0%, rgba(255, 106, 58, 0.01) 100%);
+        }
+        
+        /* Animation pour le bouton */
+        .pay-now-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pay-now-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .pay-now-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .pay-now-btn:active {
+            transform: scale(0.98);
         }
         
         /* Responsive */
@@ -519,6 +818,7 @@
             opacity: 1;
             pointer-events: auto;
         }
+        
     </style>
 </head>
 
@@ -715,15 +1015,15 @@
             <!-- main-area -->
             <main>
                 <!-- td-hero-area-start -->
-                <div class="td-hero-area td-btn-trigger td-hero-2-spacing p-relative fix z-index-1 include-bg" data-background="assets/img/hero/hero-2/bg.jpg">
+                <div class="td-hero-area td-btn-trigger td-hero-2-spacing p-relative fix z-index-1 include-bg" data-background="Assetsmoney/accueil/bg.jpg">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-7">
                                 <div class="td-hero-2-title-wrap">
                                     <h2 class="td-hero-2-title mb-100">
-                                        <span class="d-flex align-items-center td-split-text td-split-in-right">CREATIVE <i class="fa-sharp fa-solid fa-arrow-right"></i></span>
-                                        <span class="td-split-text td-split-in-right">STRATEGIES TO</span>
-                                        <span class="td-split-text td-split-in-right">GET GROWING</span>
+                                        <span class="d-flex align-items-center td-split-text td-split-in-right">SOLUTIONS <i class="fa-sharp fa-solid fa-arrow-right"></i></span>
+                                        <span class="td-split-text td-split-in-right">FINANCIÈRES</span>
+                                        <span class="td-split-text td-split-in-right">INNOVANTES</span>
                                     </h2>
                                 </div>
                             </div>
@@ -733,13 +1033,12 @@
                                         <img class="thumb-3" src="assets/img/hero/hero-2/shape-1.png" alt="">
                                     </div>
                                     <img class="thumb-4 td-btn-bounce" src="assets/img/hero/hero-2/shape-2.png" alt="">
-                                    <img class="thumb-1" src="Assetsmoney/accueil/carte.png" alt="">
-                                    <img class="thumb-2 d-none d-sm-inline-block" src="assets/img/hero/hero-2/thumb-2.jpg" alt="">
+                                    <img class="thumb-1" src="Assetsmoney/accueil/cartmocup2.png" alt="">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="td-hero-2-bigtitle">
-                                    <h2 class="td-split-text td-split-in-right">STARTUP</h2>
+                                    <h2 class="td-split-text td-split-in-right">GDA Money</h2>
                                 </div>
                             </div>
                         </div>
@@ -753,18 +1052,16 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-9">
                                 <div class="td-service-2-title-wrap text-center mb-60 td-title-anim">
-                                    <span class="td-section-2-subtitle mb-25 d-inline-block">//  Who we are</span>
-                                    <h2 class="td-section-2-title">We provide brilliant ideas to help
-                                        your startup grow building <span>your
-                                            branding with precision</span></h2>
+                                    <span class="td-section-2-subtitle mb-25 d-inline-block">//  Qui nous sommes ?</span>
+                                    <h2 class="td-section-2-title">Carte prépayée moderne et sécurisée pour faciliter vos paiements, maîtriser vos dépenses et <span>propulser votre liberté financière.</span></h2> 
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="td-service-main-expreance mb-30  wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
-                                    <h2 class="expreance mb-0">26</h2>
-                                    <span class="year">YEARS OF WORK EXPERIENCE</span>
+                                    <h2 class="expreance mb-0">+10</h2>
+                                    <span class="year">ANNÉES D'EXPÉRIENCE</span>
                                 </div>
                             </div>
                             <div class="col-lg-8">
@@ -772,23 +1069,26 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="td-service-main-strategy mb-40  wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
-                                                <h3 class="title mb-20">Brand strategy</h3>
-                                                <p class="text">Some definitions of marketing highlight
-                                                    marketing's ability to produce</p>
+                                                <h3 class="title mb-20">Stratégie de marque</h3>
+                                                <p class="text">GDA money vous permet de gérer votre argent avec précision :
+                                                     rechargement rapide, transactions sécurisées, 
+                                                     contrôle total de vos dépenses, partout et à tout moment.
+                                                    </p>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="td-service-main-strategy mb-40  wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">
-                                                <h3 class="title mb-20">Make it creative</h3>
-                                                <p class="text">Some definitions of marketing highlight
-                                                    marketing's ability to produce</p>
+                                                <h3 class="title mb-20">Make it Créativité & Innovation</h3>
+                                                <p class="text">Nous repensons l’expérience financière avec une carte intuitive, 
+                                                    connectée et pensée pour une utilisation quotidienne sans contraintes.</p>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="td-service-main-strategy  wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
-                                                <p class="text">Some definitions of marketing highlight marketing's ability to produce  value to shareholders
-                                                    of the firm as well. In this context, marketing  can be defined as "the management process
-                                                    that seeks to maximise returns to shareholders</p>
+                                                <p class="text">Notre vision est simple : rendre les services financiers plus accessibles. 
+                                                    GDA money vous aide à créer de la valeur,
+                                                    à mieux organiser votre budget et à disposer d’un outil
+                                                    fiable qui maximise votre liberté financière au quotidien.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -805,13 +1105,13 @@
                         <div class="row align-items-center">
                             <div class="col-lg-9 col-md-9">
                                 <div class="td-service-2-title-wrap mb-40  wow fadeInLeft" data-wow-delay=".5s" data-wow-duration="1s">
-                                    <span class="td-section-2-subtitle mb-25 d-inline-block">//  Our services</span>
-                                    <h2 class="td-section-2-title">Our full creative <br>startup <span>agency<br> service</span></h2>
+                                    <span class="td-section-2-subtitle mb-25 d-inline-block">//  Nos services</span>
+                                    <h2 class="td-section-2-title">Les fonctionnalités <br> essentielles  <span>dans <br>  une seule carte prépayée</span></h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 d-none d-md-block">
                                 <div class="td-service-2-shape mb-40  td-btn-bounce">
-                                    <img src="assets/img/service/service-2/ok.png" alt="">
+                                    <img src="Assetsmoney/accueil/imehdi.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -842,7 +1142,7 @@
                                         <a href="service-details.html">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">01</span>
-                                                Branding strategy
+                                                Rechargement rapide & sécurisé
                                             </div>
                                             <div class="icon mb-10">
                                                 <span>
@@ -858,7 +1158,7 @@
                                         <a href="service-details.html">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">02</span>
-                                                Web development
+                                                Paiements physiques et en ligne
                                             </div>
                                             <div class="icon mb-10">
                                                 <span>
@@ -874,7 +1174,7 @@
                                         <a href="service-details.html">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">03</span>
-                                                Graphics design
+                                                Gestion des dépenses en temps réel
                                             </div>
                                             <div class="icon mb-10">
                                                 <span>
@@ -890,7 +1190,7 @@
                                         <a href="service-details.html">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">04</span>
-                                                Tech development
+                                                Solutions technologiques pour entreprises
                                             </div>
                                             <div class="icon mb-10">
                                                 <span>
@@ -911,7 +1211,7 @@
 
                 <!-- td-portfolio-area-start -->
                 <div class="td-portfolio-area pt-125">
-                    <h2 class="td-portfolio-2-bigtitle td-split-text td-split-in-right">Work</h2>
+                    <h2 class="td-portfolio-2-bigtitle td-split-text td-split-in-right">Usage</h2>
                     <div class="td-portfolio-2-slider-wrap mb-10">
                         <div class="swiper-container td-portfolio-2-slider">
                             <div class="swiper-wrapper slide-transtion">
@@ -1175,27 +1475,22 @@
                         <div class="swiper-wrapper slide-transtion">
                             <div class="swiper-slide">
                                 <div class="td-text-home-2">
-                                    <h2>STARTUP AGENCY</h2>
+                                    <h2>ACHETEZ VOS CARTES GDA Money</h2>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="td-text-home-2">
-                                    <h2>GROWING BUSINEES</h2>
+                                    <h2>RECHARGEZ VOS CARTES GDA Money</h2>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="td-text-home-2">
-                                    <h2>STARTUP AGENCY  GROWING BUSINEES</h2>
+                                    <h2>GÉREZ VOS FINANCES AVEC GDA Money</h2>
                         </div>
                                  </div>
-                            <div class="swiper-slide">
-                                <div class="td-text-home-2">
-                                    <h2>GROWING BUSINEES</h2>
                             </div>
                                 </div>
                             </div>
-                                                </div>
-                                            </div>
                 <!-- td-text-slider-2-area-end -->
 
                 <!-- Formulaire de commande - Start (AceCoinPay Design) -->
@@ -1216,10 +1511,10 @@
                                         <div class="step-item active" data-step="2">
                                             <div class="step-indicator">
                                                 <span class="step-number">2</span>
-                                            </div>
+                                                </div>
                                             <div class="step-line"></div>
                                             <span class="step-label">Carte et paiement</span>
-                                        </div>
+                                            </div>
                                         <div class="step-item" data-step="3">
                                             <div class="step-indicator">
                                                 <span class="step-number">3</span>
@@ -1228,99 +1523,379 @@
                                         </div>
                                     </div>
 
-                                    <form id="orderForm" class="payment-form" novalidate>
+                                    <form id="orderForm" class="payment-form" novalidate onsubmit="return false;">
                                         <div class="modal-content">
                                             <!-- Left Panel - Payment Form -->
                                             <div class="payment-left">
                                                 <div class="form-field">
-                                                    <div class="field-header">
-                                                        <label for="cardNumber">Card Number</label>
-                                                        <a href="#" class="edit-link">
-                                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                                                <path d="M8.5 1L11 3.5L6.5 8H4V5.5L8.5 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                        </svg>
-                                                            Edit
-                                                        </a>
+                                                    <label>Type d'opération</label>
+                                                    <div class="operation-choices">
+                                                        <label class="choice">
+                                                            <input type="radio" name="operationType" value="achat" checked>
+                                                            <span>Acheter une carte prépayée (10 000 FCFA)</span>
+                                                        </label>
+                                                        <label class="choice">
+                                                            <input type="radio" name="operationType" value="rechargement">
+                                                            <span>Recharger une carte prépayée (min. 5 000 FCFA)</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                    <p class="field-hint">Enter the 16-digit card number on the card</p>
-                                                    <div class="card-number-input">
-                                                        <span class="card-icon">💳</span>
-                                                        <input type="text" id="cardNumber" name="cardNumber" placeholder="2412 - 7512 - 3412 - 3456" maxlength="19" required>
-                                                        <span class="check-icon">✓</span>
+
+                                                <div class="form-field">
+                                                    <label for="firstName">Prénom</label>
+                                                    <input type="text" id="firstName" name="firstName" placeholder="Jean" required>
+                                                </div>
+
+                                                <div class="form-field">
+                                                    <label for="lastName">Nom</label>
+                                                    <input type="text" id="lastName" name="lastName" placeholder="Dupont" required>
+                                                </div>
+
+                                                <div class="form-field">
+                                                    <label for="email">Email (optionnel)</label>
+                                                    <input type="email" id="email" name="email" placeholder="jean.dupont@email.com">
+                                                </div>
+
+                                                <div class="form-field">
+                                                    <label for="phone">Téléphone</label>
+                                                    <input type="tel" id="phone" name="phone" placeholder="+225 01 23 45 67" required>
+                                                </div>
+
+                                                <!-- Achat de carte -->
+                                                <div class="form-field" data-section="achat">
+                                                    <label for="district">Quartier</label>
+                                                    <input type="text" id="district" name="district" placeholder="Plateau, Cocody..." required>
+                                                </div>
+                                                <div class="form-field" data-section="achat">
+                                                    <label for="idDocument">Photo de la pièce d'identité</label>
+                                                    <input type="file" id="idDocument" name="idDocument" accept="image/*,application/pdf" required>
+                                                    <p class="field-hint">Carte d'identité / Passeport / Carte nationale</p>
+                                                </div>
+
+                                                <!-- Rechargement -->
+                                                <div class="form-field" data-section="rechargement">
+                                                    <label for="cardNumber">Numéro de carte</label>
+                                                    <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                                                </div>
+                                                <div class="form-field" data-section="rechargement">
+                                                    <label for="reloadAmount">Montant du rechargement</label>
+                                                    <input type="number" id="reloadAmount" name="reloadAmount" min="5000" step="500" placeholder="5000" required>
+                                                    <p class="field-hint">À partir de 5 000 FCFA</p>
+                                                </div>
+
+                                                <button type="submit" class="pay-now-btn" id="submitButton">Commander une carte</button>
                                             </div>
-                                        </div>
-
-                                                <div class="form-field">
-                                                    <label for="cvv">CVV Number</label>
-                                                    <p class="field-hint">Enter the 3 or 4 digit number on the card</p>
-                                                    <div class="cvv-input">
-                                                        <input type="text" id="cvv" name="cvv" placeholder="327" maxlength="4" required>
-                                                        <span class="grid-icon">⊞</span>
-                                    </div>
-                                </div>
-
-                                                <div class="form-field">
-                                                    <label for="expiry">Expiry Date</label>
-                                                    <p class="field-hint">Enter the expiration date of the card</p>
-                                                    <div class="expiry-inputs">
-                                                        <input type="text" id="expiryMonth" name="expiryMonth" placeholder="09" maxlength="2" required>
-                                                        <span class="separator">/</span>
-                                                        <input type="text" id="expiryYear" name="expiryYear" placeholder="22" maxlength="2" required>
-                            </div>
-                        </div>
-
-                                                <div class="form-field">
-                                                    <label for="password">Password</label>
-                                                    <p class="field-hint">Enter your Dynamic password</p>
-                                                    <div class="password-input">
-                                                        <input type="password" id="password" name="password" placeholder="........." required>
-                                                        <span class="grid-icon">⊞</span>
-                    </div>
-                </div>
-
-                                                <button type="submit" class="pay-now-btn">Pay Now</button>
-                                </div>
 
                                             <!-- Right Panel - Card & Summary -->
                                             <div class="payment-right">
                                                 <!-- Virtual Card -->
                                                 <div class="virtual-card">
                                                     <img src="Assetsmoney/accueil/carte.png" alt="Carte prépayée" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;">
-                            </div>
+                                                </div>
 
                                                 <!-- Order Summary -->
                                                 <div class="order-summary">
-                                                    <div class="summary-item">
-                                                        <span class="summary-label">Company</span>
-                                                        <span class="summary-value">GDA Money</span>
-                                </div>
-                                                    <div class="summary-item">
-                                                        <span class="summary-label">Order Number</span>
-                                                        <span class="summary-value">1266201</span>
-                            </div>
-                                                    <div class="summary-item">
-                                                        <span class="summary-label">Product</span>
-                                                        <span class="summary-value">Carte VISA UBA</span>
-                                </div>
-                                                    <div class="summary-item">
-                                                        <span class="summary-label">VAT (20%)</span>
-                                                        <span class="summary-value">1 500 FCFA</span>
-                            </div>
+                                                    <h3 class="summary-title">Récapitulatif</h3>
+                                                    <div class="summary-content">
+                                                        <div class="summary-item animated-item">
+                                                            <span class="summary-label">Entreprise</span>
+                                                            <span class="summary-value">GDA Money</span>
+                                                        </div>
+                                                        <div class="summary-item animated-item">
+                                                            <span class="summary-label">Type d'opération</span>
+                                                            <span class="summary-value" id="summaryOperation">Achat de carte prépayée</span>
+                                                        </div>
+                                                        <div class="summary-item animated-item" id="summaryCardNumber" style="display: none; opacity: 0;">
+                                                            <span class="summary-label">N° de carte</span>
+                                                            <span class="summary-value" id="cardNumberValue">---</span>
+                                                        </div>
+                                                        <div class="summary-item animated-item" id="summaryCondition">
+                                                            <span class="summary-label">Condition</span>
+                                                            <span class="summary-value" id="conditionValue">Achat à 10 000 FCFA</span>
+                                                        </div>
+                                                    </div>
                                                     <div class="total-payment">
                                                         <div class="total-label">
-                                                            <span>You have to Pay</span>
+                                                            <span>Montant total</span>
                                                             <span class="receipt-icon">📄</span>
-                                </div>
-                                                        <div class="total-amount" id="totalAmount">9 500 FCFA</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                                        </div>
+                                                        <div class="total-amount" id="totalAmount">10 000 FCFA</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                                    <script>
+                                        (function() {
+                                            const form = document.getElementById('orderForm');
+                                            if (!form) return;
+
+                                            // Elements du formulaire
+                                            const operationRadios = form.querySelectorAll('input[name="operationType"]');
+                                            const firstName = document.getElementById('firstName');
+                                            const lastName = document.getElementById('lastName');
+                                            const email = document.getElementById('email');
+                                            const phone = document.getElementById('phone');
+                                            const district = document.getElementById('district');
+                                            const cardNumber = document.getElementById('cardNumber');
+                                            const reloadAmount = document.getElementById('reloadAmount');
+                                            const submitButton = document.getElementById('submitButton');
+                                            
+                                            // Elements du récapitulatif
+                                            const summaryOperation = document.getElementById('summaryOperation');
+                                            const cardNumberValue = document.getElementById('cardNumberValue');
+                                            const conditionValue = document.getElementById('conditionValue');
+                                            const totalAmount = document.getElementById('totalAmount');
+                                            const summaryCardNumber = document.getElementById('summaryCardNumber');
+
+                                            const sections = {
+                                                achat: form.querySelectorAll('[data-section="achat"]'),
+                                                rechargement: form.querySelectorAll('[data-section="rechargement"]')
+                                            };
+
+                                            // Fonction pour animer la mise à jour d'un élément
+                                            const animateUpdate = (element) => {
+                                                if (element) {
+                                                    element.classList.add('updated');
+                                                    setTimeout(() => {
+                                                        element.classList.remove('updated');
+                                                    }, 600);
+                                                }
+                                            };
+
+                                            // Fonction pour formater et mettre à jour une valeur
+                                            const updateValue = (element, value, animate = true) => {
+                                                if (!element) return;
+                                                const displayValue = value && value.trim() ? value : '---';
+                                                if (element.textContent !== displayValue) {
+                                                    element.textContent = displayValue;
+                                                    // Ajouter/supprimer la classe 'filled' pour le style orange
+                                                    if (value && value.trim() && displayValue !== '---') {
+                                                        element.classList.add('filled');
+                                                    } else {
+                                                        element.classList.remove('filled');
+                                                    }
+                                                    if (animate && value && value.trim()) {
+                                                        animateUpdate(element.closest('.summary-item'));
+                                                    }
+                                                }
+                                            };
+
+                                            // Fonction pour basculer les sections
+                                            const toggleSections = (activeType) => {
+                                                ['achat', 'rechargement'].forEach((type) => {
+                                                    sections[type].forEach((block) => {
+                                                        const enable = type === activeType;
+                                                        if (enable) {
+                                                            block.style.display = '';
+                                                            block.style.animation = 'fadeInUp 0.4s ease-out';
+                                                        } else {
+                                                            block.style.display = 'none';
+                                                        }
+                                                        block.querySelectorAll('input, select, textarea').forEach((input) => {
+                                                            input.disabled = !enable;
+                                                            input.required = enable && input.dataset.optional !== 'true';
+                                                        });
+                                                    });
+                                                });
+                                                
+                                                // Afficher/masquer les éléments du récapitulatif avec animation
+                                                if (activeType === 'achat') {
+                                                    if (summaryCardNumber.style.display !== 'none') {
+                                                        summaryCardNumber.style.animation = 'fadeOut 0.3s ease-out';
+                                                        summaryCardNumber.style.opacity = '0';
+                                                        setTimeout(() => {
+                                                            summaryCardNumber.style.display = 'none';
+                                                        }, 300);
+                                                    }
+                                                } else {
+                                                    if (summaryCardNumber.style.display === 'none' || !summaryCardNumber.style.display) {
+                                                        summaryCardNumber.style.display = '';
+                                                        summaryCardNumber.style.opacity = '0';
+                                                        setTimeout(() => {
+                                                            summaryCardNumber.style.animation = 'fadeInUp 0.4s ease-out';
+                                                            summaryCardNumber.style.opacity = '1';
+                                                        }, 50);
+                                                    }
+                                                }
+                                            };
+
+                                            // Fonction pour mettre à jour le récapitulatif complet
+                                            const refreshSummary = () => {
+                                                const activeType = form.querySelector('input[name="operationType"]:checked').value;
+                                                
+                                                // Type d'opération
+                                                const operationText = activeType === 'achat' 
+                                                    ? 'Achat de carte prépayée' 
+                                                    : 'Rechargement de carte prépayée';
+                                                updateValue(summaryOperation, operationText);
+                                                
+                                                // Numéro de carte (pour rechargement)
+                                                if (activeType === 'rechargement') {
+                                                    updateValue(cardNumberValue, cardNumber?.value);
+                                                }
+                                                
+                                                // Condition
+                                                const conditionText = activeType === 'achat'
+                                                    ? 'Achat à 10 000 FCFA'
+                                                    : 'Rechargement min. 5 000 FCFA';
+                                                updateValue(conditionValue, conditionText, false);
+                                                
+                                                // Montant total
+                                                let montant = activeType === 'achat' ? 10000 : parseInt(reloadAmount?.value || '0', 10);
+                                                if (activeType === 'rechargement' && montant < 5000) {
+                                                    montant = 0;
+                                                }
+                                                
+                                                const amountText = montant ? montant.toLocaleString('fr-FR') + ' FCFA' : '---';
+                                                if (totalAmount.textContent !== amountText) {
+                                                    totalAmount.textContent = amountText;
+                                                    animateUpdate(totalAmount);
+                                                }
+                                            };
+
+                                            // Fonction pour gérer le changement de type d'opération
+                                            const handleChange = () => {
+                                                const activeType = form.querySelector('input[name="operationType"]:checked').value;
+                                                toggleSections(activeType);
+                                                refreshSummary();
+                                                
+                                                // Mettre à jour le texte du bouton
+                                                if (submitButton) {
+                                                    submitButton.textContent = activeType === 'achat' 
+                                                        ? 'Commander une carte' 
+                                                        : 'Recharger ma carte';
+                                                }
+                                            };
+
+                                            // Écouteurs d'événements pour tous les champs
+                                            const setupListeners = () => {
+                                                // Type d'opération
+                                                operationRadios.forEach((radio) => {
+                                                    radio.addEventListener('change', handleChange);
+                                                });
+                                                
+                                                // Champs du formulaire (seulement ceux qui sont dans le récapitulatif)
+                                                [cardNumber].forEach(field => {
+                                                    if (field) {
+                                                        field.addEventListener('input', refreshSummary);
+                                                        field.addEventListener('blur', refreshSummary);
+                                                    }
+                                                });
+                                                
+                                                // Montant de rechargement
+                                                if (reloadAmount) {
+                                                    reloadAmount.addEventListener('input', () => {
+                                                        refreshSummary();
+                                                        // Validation en temps réel
+                                                        const value = parseInt(reloadAmount.value || '0', 10);
+                                                        if (value > 0 && value < 5000) {
+                                                            reloadAmount.style.borderColor = '#ef4444';
+                                                        } else {
+                                                            reloadAmount.style.borderColor = '';
+                                                        }
+                                                    });
+                                                }
+                                            };
+
+                                            // Gestionnaire de soumission du formulaire - SIMPLE ET DIRECT
+                                            form.addEventListener('submit', function(e) {
+                                                console.log('=== FORMULAIRE SOUMIS - GESTIONNAIRE APPELÉ ===');
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                e.stopImmediatePropagation();
+                                                
+                                                // Test immédiat pour confirmer que le gestionnaire fonctionne
+                                                console.log('Gestionnaire actif, validation en cours...');
+                                                
+                                                // Déterminer le type d'opération
+                                                const activeType = form.querySelector('input[name="operationType"]:checked')?.value || 'achat';
+                                                const isAchat = activeType === 'achat';
+                                                console.log('Type d\'opération:', activeType);
+                                                
+                                                // Validation simple
+                                                let isValid = true;
+                                                let firstErrorField = null;
+                                                
+                                                if (isAchat) {
+                                                    // Validation pour achat
+                                                    const requiredFields = ['firstName', 'lastName', 'phone', 'district', 'idDocument'];
+                                                    requiredFields.forEach(fieldId => {
+                                                        const field = document.getElementById(fieldId);
+                                                        if (field && (!field.value || !field.value.trim())) {
+                                                            isValid = false;
+                                                            field.style.borderColor = '#ef4444';
+                                                            if (!firstErrorField) firstErrorField = field;
+                                                        } else if (field) {
+                                                            field.style.borderColor = '';
+                                                        }
+                                                    });
+                                                } else {
+                                                    // Validation pour rechargement
+                                                    const requiredFields = ['firstName', 'lastName', 'phone', 'cardNumber', 'reloadAmount'];
+                                                    requiredFields.forEach(fieldId => {
+                                                        const field = document.getElementById(fieldId);
+                                                        if (field) {
+                                                            if (!field.value || !field.value.trim()) {
+                                                                isValid = false;
+                                                                field.style.borderColor = '#ef4444';
+                                                                if (!firstErrorField) firstErrorField = field;
+                                                            } else if (fieldId === 'reloadAmount') {
+                                                                const amount = parseInt(field.value, 10);
+                                                                if (isNaN(amount) || amount < 5000) {
+                                                                    isValid = false;
+                                                                    field.style.borderColor = '#ef4444';
+                                                                    if (!firstErrorField) firstErrorField = field;
+                                                                } else {
+                                                                    field.style.borderColor = '';
+                                                                }
+                                                            } else {
+                                                                field.style.borderColor = '';
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                                
+                                                if (!isValid) {
+                                                    // Afficher un message d'erreur simple
+                                                    alert('Veuillez remplir tous les champs obligatoires correctement.');
+                                                    if (firstErrorField) {
+                                                        firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                                        firstErrorField.focus();
+                                                    }
+                                                    return false;
+                                                }
+                                                
+                                                // Si validation OK, réinitialiser le formulaire
+                                                console.log('Validation OK, formulaire soumis avec succès');
+                                                
+                                                // Réinitialiser le formulaire
+                                                setTimeout(() => {
+                                                    form.reset();
+                                                    refreshSummary();
+                                                    handleChange();
+                                                    // Réinitialiser les bordures
+                                                    form.querySelectorAll('input').forEach(input => {
+                                                        input.style.borderColor = '';
+                                                    });
+                                                }, 1000);
+                                                
+                                                return false;
+                                            }, true); // Utiliser capture phase pour intercepter avant les autres
+                                            
+                                            // Initialisation
+                                            setupListeners();
+                                            handleChange();
+                                            refreshSummary();
+                                            
+                                            // Mise à jour périodique pour s'assurer de la synchronisation
+                                            setInterval(refreshSummary, 1000);
+                                        })();
+                                    </script>
                 </div>
                 <!-- Formulaire de commande - End -->
 
@@ -1381,84 +1956,60 @@
                             <div class="swiper-wrapper slide-transtion">
                                 <div class="swiper-slide">
                                     <div class="td-feature-2-item">
-                                        <span><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.59856 1C6.19234 1 4.63215 2.61519 2.78697 3.20392C2.03671 3.4433 1.66158 3.56299 1.50976 3.73172C1.35794 3.90044 1.31349 4.147 1.22458 4.64011C0.273147 9.9168 2.35272 14.7952 7.31223 16.694C7.84511 16.898 8.11154 17 8.60119 17C9.09083 17 9.35725 16.898 9.89009 16.694C14.8493 14.7952 16.9269 9.91678 15.9752 4.6401C15.8862 4.14691 15.8417 3.90032 15.6899 3.73159C15.5381 3.56286 15.1629 3.44324 14.4127 3.20399C12.5668 2.61532 11.0049 1 8.59856 1Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M8.60107 5L8.60107 6.6" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 9C11.0711 9 12.75 7.32107 12.75 5.25C12.75 3.17893 11.0711 1.5 9 1.5C6.92893 1.5 5.25 3.17893 5.25 5.25C5.25 7.32107 6.92893 9 9 9Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M15.4425 16.5C15.4425 13.5147 12.4853 11.25 9 11.25C5.51472 11.25 2.5575 13.5147 2.5575 16.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M13.5 3.75L15.75 6L13.5 8.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                           </svg>
                                         </span>
-                                        <span> Lifetime Membership</span>
+                                        <span> Accès instantané à votre compte</span>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="td-feature-2-item">
-                                        <span><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.59856 1C6.19234 1 4.63215 2.61519 2.78697 3.20392C2.03671 3.4433 1.66158 3.56299 1.50976 3.73172C1.35794 3.90044 1.31349 4.147 1.22458 4.64011C0.273147 9.9168 2.35272 14.7952 7.31223 16.694C7.84511 16.898 8.11154 17 8.60119 17C9.09083 17 9.35725 16.898 9.89009 16.694C14.8493 14.7952 16.9269 9.91678 15.9752 4.6401C15.8862 4.14691 15.8417 3.90032 15.6899 3.73159C15.5381 3.56286 15.1629 3.44324 14.4127 3.20399C12.5668 2.61532 11.0049 1 8.59856 1Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M8.60107 5L8.60107 6.6" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.75 12.75C15.75 13.5784 15.0784 14.25 14.25 14.25H4.5C3.67157 14.25 3 13.5784 3 12.75V5.25C3 4.42157 3.67157 3.75 4.5 3.75H14.25C15.0784 3.75 15.75 4.42157 15.75 5.25V12.75Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M3 6.75L9 10.5L15 6.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <circle cx="15" cy="12" r="1.5" fill="white" />
                                           </svg>
                                         </span>
-                                        <span> Premium Customer Support</span>
+                                        <span> Support client premium 24/7</span>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="td-feature-2-item">
-                                        <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.24434 7.95965C1.58072 6.80251 1.26029 5.85764 1.06709 4.89985C0.781336 3.4833 1.43527 2.09956 2.51857 1.21663C2.97641 0.843468 3.50126 0.970963 3.772 1.45668L4.38323 2.55324C4.8677 3.4224 5.10994 3.85698 5.06189 4.31771C5.01385 4.77845 4.68716 5.1537 4.03378 5.9042L2.24434 7.95965ZM2.24434 7.95965C3.58755 10.3018 5.69549 12.4109 8.04035 13.7557M8.04035 13.7557C9.19749 14.4193 10.1424 14.7397 11.1002 14.9329C12.5167 15.2187 13.9004 14.5647 14.7834 13.4814C15.1565 13.0236 15.029 12.4987 14.5433 12.228L13.4468 11.6168C12.5776 11.1323 12.143 10.8901 11.6823 10.9381C11.2215 10.9862 10.8463 11.3128 10.0958 11.9662L8.04035 13.7557Z" stroke="white" stroke-width="1.5" stroke-linejoin="round" />
-                                            <path d="M9.40002 4.3823C10.3963 4.80537 11.1947 5.60374 11.6178 6.6M9.85784 1C12.3339 1.71453 14.2854 3.66597 15 6.14194" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                        <span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.75 10.5C13.5784 10.5 14.25 9.82843 14.25 9C14.25 8.17157 13.5784 7.5 12.75 7.5C11.9216 7.5 11.25 8.17157 11.25 9C11.25 9.82843 11.9216 10.5 12.75 10.5Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.25 10.5C6.07843 10.5 6.75 9.82843 6.75 9C6.75 8.17157 6.07843 7.5 5.25 7.5C4.42157 7.5 3.75 8.17157 3.75 9C3.75 9.82843 4.42157 10.5 5.25 10.5Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M9 3.75C10.2426 3.75 11.25 4.75736 11.25 6V12C11.25 13.2426 10.2426 14.25 9 14.25C7.75736 14.25 6.75 13.2426 6.75 12V6C6.75 4.75736 7.75736 3.75 9 3.75Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M12.75 12.75L14.25 14.25" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                           </svg>
                                         </span>
-                                        <span> Free 30 Minute call</span>
+                                        <span> Appel d'orientation gratuit de 30 minutes</span>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="td-feature-2-item">
                                         <span>
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M10.3821 2.15534L11.79 4.9943C11.9819 5.3895 12.4939 5.76856 12.9258 5.84115L15.4775 6.2686C17.1094 6.54282 17.4933 7.73647 16.3175 8.914L14.3337 10.9142C13.9977 11.2529 13.8137 11.9062 13.9177 12.374L14.4857 14.85C14.9336 16.8098 13.9017 17.568 12.1819 16.5437L9.79018 15.1162C9.35822 14.8581 8.6463 14.8581 8.20635 15.1162L5.81461 16.5437C4.1028 17.568 3.06292 16.8018 3.51087 14.85L4.07881 12.374C4.18279 11.9062 3.99881 11.2529 3.66285 10.9142L1.67907 8.914C0.5112 7.73647 0.887159 6.54282 2.51898 6.2686L5.0707 5.84115C5.49465 5.76856 6.00659 5.3895 6.19857 4.9943L7.60642 2.15534C8.37433 0.614886 9.62219 0.614886 10.3821 2.15534Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M3 13.5L7.5 9L10.5 12L15 7.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M12 7.5H15V10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M15 3H10.5C9.25736 3 8.25 4.00736 8.25 5.25V15C8.25 16.2426 9.25736 17.25 10.5 17.25H15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </span>
-                                        <span> Strategic Roadmapping</span>
+                                        <span> Planification financière personnalisée</span>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="td-feature-2-item">
                                         <span>
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17C13.4183 17 17 13.4183 17 9Z" stroke="white" stroke-width="1.5" />
-                                                <path d="M5.80054 9.60054C5.80054 9.60054 7.08054 10.3306 7.72054 11.4005C7.72054 11.4005 9.64054 7.20054 12.2005 5.80054" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M6.75 7.5C6.75 8.74264 7.75736 9.75 9 9.75C10.2426 9.75 11.25 8.74264 11.25 7.5C11.25 6.25736 10.2426 5.25 9 5.25C7.75736 5.25 6.75 6.25736 6.75 7.5Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M3 15.75C3 12.8505 5.60051 10.5 9 10.5C12.3995 10.5 15 12.8505 15 15.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                <path d="M12.75 6.75L15 4.5M15 4.5L12.75 2.25M15 4.5H10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
                                         </span>
-                                        <span> Collaborative Ideation</span>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="td-feature-2-item">
-                                        <span><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.59856 1C6.19234 1 4.63215 2.61519 2.78697 3.20392C2.03671 3.4433 1.66158 3.56299 1.50976 3.73172C1.35794 3.90044 1.31349 4.147 1.22458 4.64011C0.273147 9.9168 2.35272 14.7952 7.31223 16.694C7.84511 16.898 8.11154 17 8.60119 17C9.09083 17 9.35725 16.898 9.89009 16.694C14.8493 14.7952 16.9269 9.91678 15.9752 4.6401C15.8862 4.14691 15.8417 3.90032 15.6899 3.73159C15.5381 3.56286 15.1629 3.44324 14.4127 3.20399C12.5668 2.61532 11.0049 1 8.59856 1Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M8.60107 5L8.60107 6.6" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                                          </svg>
-                                        </span>
-                                        <span> Premium Customer Support</span>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="td-feature-2-item">
-                                        <span>
-                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17C13.4183 17 17 13.4183 17 9Z" stroke="white" stroke-width="1.5" />
-                                                <path d="M5.80054 9.60054C5.80054 9.60054 7.08054 10.3306 7.72054 11.4005C7.72054 11.4005 9.64054 7.20054 12.2005 5.80054" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </span>
-                                        <span> Collaborative Ideation</span>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="td-feature-2-item">
-                                        <span><svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.59856 1C6.19234 1 4.63215 2.61519 2.78697 3.20392C2.03671 3.4433 1.66158 3.56299 1.50976 3.73172C1.35794 3.90044 1.31349 4.147 1.22458 4.64011C0.273147 9.9168 2.35272 14.7952 7.31223 16.694C7.84511 16.898 8.11154 17 8.60119 17C9.09083 17 9.35725 16.898 9.89009 16.694C14.8493 14.7952 16.9269 9.91678 15.9752 4.6401C15.8862 4.14691 15.8417 3.90032 15.6899 3.73159C15.5381 3.56286 15.1629 3.44324 14.4127 3.20399C12.5668 2.61532 11.0049 1 8.59856 1Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                            <path d="M8.60107 5L8.60107 6.6" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                                          </svg>
-                                        </span>
-                                        <span> Premium Customer Support</span>
+                                        <span> Accompagnement et conseils continus</span>
                                     </div>
                                 </div>
                             </div>
@@ -1526,8 +2077,8 @@
                             <div class="col-lg-6">
                                 <div class="td-faq-4-wrap-right td-faq-2-wrap-right mb-30 wow fadeInRight" data-wow-delay=".5s" data-wow-duration="1s">
                                     <div class="td-service-2-title-wrap">
-                                        <span class="td-section-2-subtitle mb-25 d-block">//  Our faq’s</span>
-                                        <h2 class="td-section-2-title d-inline-block">Frequently asked <span>questions</span></h2>
+                                        <span class="td-section-2-subtitle mb-25 d-block">// FAQ</span>
+                                        <h2 class="td-section-2-title d-inline-block">La foire aux <span>questions</span></h2>
                                     </div>
                                     <div class="td-faq-4-accordion">
                                         <div class="accordion" id="accordionExample">
@@ -1535,7 +2086,7 @@
                                               <h2 class="accordion-header">
                                                  <button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                    How to start a project?
+                                                    Comment obtenir la carte GDA money ?
                                                     <span class="plus-icon"></span>
                                                  </button>
                                               </h2>
@@ -1543,8 +2094,10 @@
                                                  data-bs-parent="#accordionExample">
                                                  <div class="accordion-body">
                                                     <p>
-                                                        Some definitions of marketing highlight marketing's ability to produce
-                                                        value to shareholders of the firm as well. In this context
+                                                        Pour obtenir votre carte GDA money, il vous suffit de vous inscrire auprès de nos agents agréés ou
+                                                         dans l’un de nos points de distribution. Une fois votre compte créé,
+                                                          la carte vous est immédiatement remise et activée. 
+                                                          Aucun compte bancaire n’est nécessaire : une pièce d’identité valide suffit.
                                                     </p>
                                                  </div>
                                               </div>
@@ -1553,7 +2106,7 @@
                                               <h2>
                                                  <button class="accordion-buttons" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                    How does a design agency work?
+                                                    Comment recharger ma carte ?
                                                     <span class="plus-icon"></span>
                                                  </button>
                                               </h2>
@@ -1561,8 +2114,11 @@
                                                  data-bs-parent="#accordionExample">
                                                  <div class="accordion-body">
                                                     <p>
-                                                        Some definitions of marketing highlight marketing's ability to produce
-                                                        value to shareholders of the firm as well. In this context
+                                                        Vous pouvez recharger votre carte de plusieurs façons :<br>
+                                                        • Chez nos agents et distributeurs GDA money<br>
+                                                        • Par dépôt direct en espèces<br>
+                                                        • Par transfert depuis un compte mobile money<br>
+                                                        Les rechargements sont instantanés, sécurisés et disponibles 7j/7.
                                                     </p>
                                                  </div>
                                               </div>
@@ -1571,7 +2127,7 @@
                                               <h2 class="accordion-header">
                                                  <button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                    Crafting a distinctive brand identity for your startup business agency
+                                                    La carte est-elle utilisable pour les achats en ligne ?
                                                     <span class="plus-icon"></span>
                                                  </button>
                                               </h2>
@@ -1579,8 +2135,7 @@
                                                  data-bs-parent="#accordionExample">
                                                  <div class="accordion-body">
                                                     <p>
-                                                        Some definitions of marketing highlight marketing's ability to produce
-                                                        value to shareholders of the firm as well. In this context
+                                                        Oui. La carte GDA money est compatible avec les paiements en ligne sur les plateformes nationales et internationales acceptant les cartes prépayées. Vous pouvez donc payer vos abonnements, achats e-commerce ou services digitaux en toute tranquillité.
                                                     </p>
                                                  </div>
                                               </div>
@@ -1589,7 +2144,7 @@
                                               <h2 class="accordion-header">
                                                  <button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                    Why hiring a design agency is essential for business success
+                                                    Quels sont les avantages d'une carte prépayée GDA money ?
                                                     <span class="plus-icon"></span>
                                                  </button>
                                               </h2>
@@ -1597,8 +2152,50 @@
                                                  data-bs-parent="#accordionExample">
                                                  <div class="accordion-body">
                                                     <p>
-                                                        Some definitions of marketing highlight marketing's ability to produce
-                                                        value to shareholders of the firm as well. In this context
+                                                        La carte GDA money vous offre :<br>
+                                                        • Un contrôle total de vos dépenses grâce à un solde limité à ce que vous rechargez<br>
+                                                        • Aucune obligation bancaire<br>
+                                                        • Des paiements sécurisés en magasin et en ligne<br>
+                                                        • Une solution simple pour voyager, payer ou consommer sans risque<br>
+                                                        • Un outil idéal pour gérer son budget personnel ou professionnel
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                           </div>
+                                           <div class="accordion-items">
+                                              <h2 class="accordion-header">
+                                                 <button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                    Que se passe-t-il si je perds ma carte ?
+                                                    <span class="plus-icon"></span>
+                                                 </button>
+                                              </h2>
+                                              <div id="collapseFive" class="accordion-collapse collapse"
+                                                 data-bs-parent="#accordionExample">
+                                                 <div class="accordion-body">
+                                                    <p>
+                                                        En cas de perte, contactez immédiatement notre service client. Nous bloquons votre carte instantanément et réémettons une nouvelle carte. Votre solde reste protégé et est automatiquement transféré sur la nouvelle carte.
+                                                    </p>
+                                                 </div>
+                                              </div>
+                                           </div>
+                                           <div class="accordion-items">
+                                              <h2 class="accordion-header">
+                                                 <button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                    Quels documents dois-je fournir pour obtenir la carte ?
+                                                    <span class="plus-icon"></span>
+                                                 </button>
+                                              </h2>
+                                              <div id="collapseSix" class="accordion-collapse collapse"
+                                                 data-bs-parent="#accordionExample">
+                                                 <div class="accordion-body">
+                                                    <p>
+                                                        Seule une pièce d'identité valide est nécessaire :<br>
+                                                        • Carte d'identité<br>
+                                                        • Passeport<br>
+                                                        • Permis de conduire<br>
+                                                        Nous appliquons un processus d'identification simple, rapide et conforme aux normes de sécurité.
                                                     </p>
                                                  </div>
                                               </div>
@@ -1788,7 +2385,7 @@
             </footer>
             <!-- footer-area-end -->
         </div>
-    </div> 
+    </div>
 
 
 
@@ -2061,27 +2658,83 @@
                     }
                 }
                 
-                // Validation sur blur
-                const allInputs = form.querySelectorAll('input');
-                allInputs.forEach(input => {
-                    input.addEventListener('blur', function() {
-                        validateField(this);
-                    });
-                });
+                // Validation sur blur (éviter la duplication)
+                // Cette validation est déjà gérée plus haut
                 
-                // Validation à la soumission
-                form.addEventListener('submit', function(e) {
+                // DÉSACTIVÉ - Le gestionnaire de soumission est dans le script principal (ligne ~2005)
+                // Ce code a été supprimé
+                /*
+                // Code supprimé - gestionnaire de soumission désactivé
+                if (false) {
                     e.preventDefault();
+                    e.stopPropagation();
                     
                     let isFormValid = true;
                     
-                    // Valider tous les champs
-                    const inputs = form.querySelectorAll('input[required]');
-                    inputs.forEach(input => {
-                        if (!validateField(input)) {
-                            isFormValid = false;
-                        }
-                    });
+                    // Déterminer le type d'opération
+                    const activeType = form.querySelector('input[name="operationType"]:checked')?.value || 'achat';
+                    
+                    // Valider les champs selon le type d'opération
+                    if (activeType === 'achat') {
+                        // Pour l'achat : prénom, nom, téléphone, quartier, pièce d'identité
+                        const requiredFields = ['firstName', 'lastName', 'phone', 'district', 'idDocument'];
+                        requiredFields.forEach(fieldId => {
+                            const field = document.getElementById(fieldId);
+                            if (field) {
+                                if (!field.value.trim()) {
+                                    isFormValid = false;
+                                    field.classList.add('error');
+                                    if (!field.parentElement.querySelector('.error-message')) {
+                                        const errorDiv = document.createElement('div');
+                                        errorDiv.className = 'error-message show';
+                                        errorDiv.textContent = 'Ce champ est obligatoire';
+                                        field.parentElement.appendChild(errorDiv);
+                                    }
+                                } else {
+                                    field.classList.remove('error');
+                                    const errorMsg = field.parentElement.querySelector('.error-message');
+                                    if (errorMsg) errorMsg.remove();
+                                }
+                            }
+                        });
+                    } else {
+                        // Pour le rechargement : prénom, nom, téléphone, numéro de carte, montant
+                        const requiredFields = ['firstName', 'lastName', 'phone', 'cardNumber', 'reloadAmount'];
+                        requiredFields.forEach(fieldId => {
+                            const field = document.getElementById(fieldId);
+                            if (field) {
+                                let fieldValid = true;
+                                
+                                if (!field.value.trim()) {
+                                    fieldValid = false;
+                                } else if (fieldId === 'reloadAmount') {
+                                    const amount = parseInt(field.value, 10);
+                                    if (isNaN(amount) || amount < 5000) {
+                                        fieldValid = false;
+                                    }
+                                }
+                                
+                                if (!fieldValid) {
+                                    isFormValid = false;
+                                    field.classList.add('error');
+                                    if (!field.parentElement.querySelector('.error-message')) {
+                                        const errorDiv = document.createElement('div');
+                                        errorDiv.className = 'error-message show';
+                                        if (fieldId === 'reloadAmount') {
+                                            errorDiv.textContent = 'Le montant minimum est de 5 000 FCFA';
+                                        } else {
+                                            errorDiv.textContent = 'Ce champ est obligatoire';
+                                        }
+                                        field.parentElement.appendChild(errorDiv);
+                                    }
+                                } else {
+                                    field.classList.remove('error');
+                                    const errorMsg = field.parentElement.querySelector('.error-message');
+                                    if (errorMsg) errorMsg.remove();
+                                }
+                            }
+                        });
+                    }
                     
                     if (isFormValid) {
                         // Animation de succès
@@ -2096,16 +2749,66 @@
                         }
                         
                         const formData = new FormData(form);
-                        console.log('Paiement effectué avec succès!');
+                        console.log('Formulaire soumis avec succès!');
                         console.log('Données:', Object.fromEntries(formData));
                         
-                        alert('Paiement effectué avec succès! Montant: ' + totalAmount.textContent);
+                        // Déterminer le type d'opération
+                        const activeType = form.querySelector('input[name="operationType"]:checked')?.value || 'achat';
+                        const isAchat = activeType === 'achat';
                         
-                        // Réinitialiser
-                        form.reset();
-                        cardLastDigits.textContent = '3456';
-                        cardExpiryMonth.textContent = '09';
-                        cardExpiryYear.textContent = '22';
+                        // Afficher l'alerte personnalisée
+                        const alert = document.getElementById('orderAlert');
+                        const alertTitle = document.getElementById('alertTitle');
+                        const alertText = document.getElementById('alertText');
+                        
+                        if (alert && alertTitle && alertText) {
+                            // Mettre à jour le contenu de l'alerte
+                            if (isAchat) {
+                                alertTitle.textContent = 'Commande lancée';
+                                alertText.textContent = 'Votre commande a été prise en compte. Nous vous ferons un retour rapide.';
+                            } else {
+                                alertTitle.textContent = 'Demande de recharge prise en compte';
+                                alertText.textContent = 'Votre demande de recharge a été prise en compte. Nous vous ferons un retour rapide.';
+                            }
+                            
+                            // Afficher l'alerte
+                            alert.style.display = 'block';
+                            alert.classList.remove('hide');
+                            
+                            // Forcer le reflow pour l'animation
+                            alert.offsetHeight;
+                            
+                            // Fermer automatiquement après 5 secondes
+                            setTimeout(() => {
+                                alert.classList.add('hide');
+                                setTimeout(() => {
+                                    alert.style.display = 'none';
+                                    alert.classList.remove('hide');
+                                }, 400);
+                            }, 5000);
+                        } else {
+                            console.error('Éléments d\'alerte non trouvés');
+                        }
+                        
+                        // Réinitialiser le formulaire après un court délai pour laisser l'alerte s'afficher
+                        setTimeout(() => {
+                            form.reset();
+                            // Réinitialiser les références de carte si elles existent
+                            const cardLastDigits = document.getElementById('cardLastDigits');
+                            const cardExpiryMonth = document.getElementById('cardExpiryMonth');
+                            const cardExpiryYear = document.getElementById('cardExpiryYear');
+                            if (cardLastDigits) cardLastDigits.textContent = '3456';
+                            if (cardExpiryMonth) cardExpiryMonth.textContent = '09';
+                            if (cardExpiryYear) cardExpiryYear.textContent = '22';
+                            
+                            // Réinitialiser le récapitulatif
+                            if (window.refreshSummary) {
+                                window.refreshSummary();
+                            }
+                            if (window.handleChange) {
+                                window.handleChange();
+                            }
+                        }, 500);
                     } else {
                         // Animation d'erreur
                         if (typeof gsap !== 'undefined') {
@@ -2126,15 +2829,17 @@
                         }
                     }
                 });
+                */ // Fin du gestionnaire désactivé
                 
                 
                 // Validation sur blur
-                const allInputs = form.querySelectorAll('input');
-                allInputs.forEach(input => {
+                const formInputs = form.querySelectorAll('input');
+                formInputs.forEach(input => {
                     input.addEventListener('blur', function() {
                         validateField(this);
                     });
                 });
+                
             });
         })();
     </script>

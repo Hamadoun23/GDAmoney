@@ -3960,7 +3960,7 @@ textarea {
 .td-hero-2-bigtitle h2 {
   font-family: var(--td-ff-dm-sans);
   font-weight: 900;
-  font-size: 260px;
+  font-size: 150px;
   line-height: 1;
   letter-spacing: 0.06em;
   color: var(--td-common-white);
@@ -3970,7 +3970,7 @@ textarea {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .td-hero-2-bigtitle h2 {
-    font-size: 200px;
+    font-size: 150px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
