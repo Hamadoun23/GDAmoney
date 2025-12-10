@@ -620,14 +620,16 @@
 		loop: true,
 		freemode: true,
 		slidesPerView: 'auto',
-		slidesPerView: 1,
 		spaceBetween: 140,
 		centeredSlides: true,
 		allowTouchMove: false,
+		loopAdditionalSlides: 8,
 		speed: 10000,
 		autoplay: {
 		  delay: 1,
-		  disableOnInteraction: true,
+		  disableOnInteraction: false,
+		  pauseOnMouseEnter: false,
+		  stopOnLastSlide: false,
 		},
 	});
 

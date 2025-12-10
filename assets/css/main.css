@@ -75,8 +75,8 @@
   --td-ff-roboto: "Roboto", serif;
   --td-ff-fontawesome: "Font Awesome 6 Pro";
   --td-common-white: #fff;
-  --td-common-black: #1c1d1f;
-  --td-common-black-2: #000;
+  --td-common-black: #381419;
+  --td-common-black-2: #381419;
   --td-common-black-3: #010101;
   --td-common-black-4: #2d2d2d;
   --td-common-black-5: #1f1306;
@@ -1350,7 +1350,7 @@ textarea {
   color: var(--td-common-white);
   text-align: center;
   cursor: pointer;
-  background: var(--td-common-black);
+  background: #FF6A3A;
   transition: 1s ease;
   border-radius: 50%;
 }
@@ -5568,7 +5568,7 @@ textarea {
   font-size: 50px;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: #0a1119;
+  color: #381419;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .td-service-2-item .title {
@@ -11309,15 +11309,15 @@ textarea {
   color: var(--td-common-white);
 }
 .td-achievement-item p {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: rgba(248, 248, 248, 0.6);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 26px;
+  color: rgba(255, 255, 255, 1);
   transition: all 0.4s ease;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .td-achievement-item p {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {

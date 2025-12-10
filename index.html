@@ -35,6 +35,10 @@
     
     <!-- Formulaire de commande CSS -->
     <style>
+        /* Smooth scroll for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
         /* AceCoinPay Design - Payment Modal */
         .td-order-form-area {
             background: url("Assetsmoney/accueil/bg.jpg") center center / cover no-repeat;
@@ -178,8 +182,8 @@
         
         .form-field label {
             font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 800;
+            color: #381419;
         }
         
         /* Operation Choices - Modern Radio Buttons */
@@ -500,8 +504,8 @@
         
         .summary-title {
             font-size: 20px;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-weight: 800;
+            color: #381419;
             margin: 0 0 24px 0;
             padding-bottom: 16px;
             border-bottom: 2px solid #FF6A3A;
@@ -593,18 +597,32 @@
         
         .summary-value {
             font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 800;
+            color: #381419;
             text-align: right;
             transition: all 0.3s;
         }
         
         .summary-value:not(:empty) {
-            color: #1a1a1a;
+            color: #381419;
+            font-weight: 800;
         }
         
-        .summary-item:has(.summary-value:not(:empty):not(:contains('---'))) .summary-value {
+        .summary-item:has(.summary-value:not(:empty):not(:contains('---'))) .summary-value:not(#summaryOperation):not(#conditionValue) {
             color: #FF6A3A;
+        }
+        
+        /* Valeurs statiques en marron foncé */
+        .summary-value#summaryOperation,
+        .summary-value#conditionValue {
+            color: #381419 !important;
+            font-weight: 800 !important;
+        }
+        
+        /* GDA Money - première valeur du récapitulatif */
+        .summary-content > .summary-item:first-child .summary-value {
+            color: #381419 !important;
+            font-weight: 800 !important;
         }
         
         /* Style pour les valeurs remplies */
@@ -764,6 +782,47 @@
         .pay-now-btn:active {
             transform: scale(0.98);
         }
+
+        /* Hero callout */
+        .hero-callout {
+            text-align: center;
+            margin: 40px auto 24px;
+            padding: 10px 16px;
+        }
+
+        .hero-callout h2 {
+            margin: 0 0 10px 0;
+            font-weight: 800;
+            color: #FF6A3A;
+            font-size: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-callout p {
+            margin: 0;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Counter images */
+        .counter-img {
+            display: block;
+            margin: 10px auto 12px;
+            width: 52px;
+            height: 52px;
+            transform: scale(2);
+            transform-origin: center;
+        }
+
+        /* Achievement icons */
+        .ach-icon {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 1;
+        }
         
         /* Responsive */
         @media (max-width: 992px) {
@@ -825,7 +884,7 @@
 <body>
 
     <!-- Preloader Start -->
-    <div id="preloader" class="preloader">
+    <div id="preloader" class="preloader" style="background: url('Assetsmoney/accueil/bg.jpg') center center / cover no-repeat;">
         <div class="animation-preloader">
             <div class="spinner">
             </div>
@@ -845,16 +904,16 @@
         <div class="loader">
             <div class="row">
                 <div class="col-3 loader-section section-left">
-                    <div class="bg"></div>
+                    <div class="bg" style="background: url('Assetsmoney/accueil/bg.jpg') center center / cover no-repeat;"></div>
                 </div>
                 <div class="col-3 loader-section section-left">
-                    <div class="bg"></div>
+                    <div class="bg" style="background: url('Assetsmoney/accueil/bg.jpg') center center / cover no-repeat;"></div>
                 </div>
                 <div class="col-3 loader-section section-right">
-                    <div class="bg"></div>
+                    <div class="bg" style="background: url('Assetsmoney/accueil/bg.jpg') center center / cover no-repeat;"></div>
                 </div>
                 <div class="col-3 loader-section section-right">
-                    <div class="bg"></div>
+                    <div class="bg" style="background: url('Assetsmoney/accueil/bg.jpg') center center / cover no-repeat;"></div>
                 </div>
             </div>
         </div>
@@ -929,11 +988,9 @@
                             <nav class="tdmenu__nav">
                                 <div class="tdmenu__navbar-wrap tdmenu__main-menu">
                                     <ul class="navigation">
-                                        <li class="active"><a href="index.html">Home</a></li>
-                                        <li><a href="#">Pages</a></li>
-                                        <li><a href="#">Portfolio</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li class="active"><a href="index.html">Accueil</a></li>
+                                        <li><a href="#services">Nos Fonctionnalités</a></li>
+                                        <li><a href="#order-form">Acheter une carte</a></li>
                                     </ul>
                                 </div>
                             </nav>
@@ -971,11 +1028,11 @@
             <nav class="tdmobile__menu-box">
                 <div class="close-btn"><i class="fa-solid fa-xmark"></i></div>
                 <div class="nav-logo">
-                    <a href="index.html"><img data-width="96" src="assets/img/logo/logo-black.png" alt="logo"></a>
+                    <a href="index.html"><img data-width="96" src="Assetsmoney/logo/money.png" alt="logo"></a>
                 </div>
                 <div class="tdmobile__search">
                     <form action="#">
-                        <input type="text" placeholder="Search here...">
+                        <input type="text" placeholder="Rechercher...">
                         <button><i class="fas fa-search"></i></button>
                     </form>
                 </div>
@@ -985,7 +1042,7 @@
                 <div class="mt-30 ml-25 mr-25">
                     <a href="contact.html" class="td-btn td-btn-menu-black w-100 d-inline-block td-btn-switch-animation ml-10">
                         <span class="d-flex align-items-center justify-content-center">
-                           <span class="btn-text"> Contact Us </span>
+                           <span class="btn-text"> Contactez-nous </span>
                            <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
                            <span class="btn-icon"><i class="fa-sharp fa-solid fa-angle-right"></i></span>
                        </span> 
@@ -993,11 +1050,10 @@
                 </div>
                 <div class="social-links">
                     <ul class="list-wrap">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://www.facebook.com/GDAMaliSA?mibextid=wwXIfr&rdid=zpkHpKNMp5bJAcUv&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BCbCJcDpk%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.tiktok.com/@gda.mali?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a></li>
+                        <li><a href="https://wa.me/22376055151" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a></li>
+                        <li><a href="mailto:contact@gdamali.net" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-envelope"></i></a></li>
                     </ul>
                 </div>
             </nav>
@@ -1078,7 +1134,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="td-service-main-strategy mb-40  wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">
-                                                <h3 class="title mb-20">Make it Créativité & Innovation</h3>
+                                                <h3 class="title mb-20">Créativité & Innovation</h3>
                                                 <p class="text">Nous repensons l’expérience financière avec une carte intuitive, 
                                                     connectée et pensée pour une utilisation quotidienne sans contraintes.</p>
                                             </div>
@@ -1100,7 +1156,7 @@
                 <!-- td-about-main-area-end -->
 
                 <!-- td-service-area-start -->
-                <div class="td-service-area hover-section td-btn-trigger">
+                <div id="services" class="td-service-area hover-section td-btn-trigger">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-9 col-md-9">
@@ -1111,7 +1167,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3 d-none d-md-block">
                                 <div class="td-service-2-shape mb-40  td-btn-bounce">
-                                    <img src="Assetsmoney/accueil/imehdi.png" alt="">
+                                    <img src="Assetsmoney/icones/imehdi.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -1139,7 +1195,7 @@
                             <div class="col-lg-7">
                                 <div class="td-service-2-wrap mb-40">
                                     <div class="td-service-2-item service-item active"  data-img="assets/img/service/service-2/thumb.png">
-                                        <a href="service-details.html">
+                                        <a href="javascript:void(0)" onclick="return false;">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">01</span>
                                                 Rechargement rapide & sécurisé
@@ -1155,13 +1211,13 @@
                                         </a>
                                     </div>
                                     <div class="td-service-2-item service-item" data-img="assets/img/service/service-2/thumb.png">
-                                        <a href="service-details.html">
+                                        <a href="javascript:void(0)" onclick="return false;">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">02</span>
                                                 Paiements physiques et en ligne
                                             </div>
                                             <div class="icon mb-10">
-                                                <span>
+                                                <span> 
                                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M1 12.965L13 0.959717" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                                         <path d="M1 0.959717H13V12.965" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -1171,7 +1227,7 @@
                                         </a>
                                     </div>
                                     <div class="td-service-2-item service-item" data-img="assets/img/service/service-2/thumb.png">
-                                        <a href="service-details.html">
+                                        <a href="javascript:void(0)" onclick="return false;">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">03</span>
                                                 Gestion des dépenses en temps réel
@@ -1187,7 +1243,7 @@
                                         </a>
                                     </div>
                                     <div class="td-service-2-item service-item" data-img="assets/img/service/service-2/thumb.png">
-                                        <a href="service-details.html">
+                                        <a href="javascript:void(0)" onclick="return false;">
                                             <div class="title d-flex align-items-center mb-10">
                                                 <span class="mr-65">04</span>
                                                 Solutions technologiques pour entreprises
@@ -1494,33 +1550,19 @@
                 <!-- td-text-slider-2-area-end -->
 
                 <!-- Formulaire de commande - Start (AceCoinPay Design) -->
-                <div class="td-order-form-area pt-155 pb-160">
+                <div id="order-form" class="td-order-form-area pt-155 pb-160">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-12 col-xl-11">
                                 <div class="acecoin-modal">
-                                    <!-- Progress Steps -->
-                                    <div class="progress-steps">
-                                        <div class="step-item completed" data-step="1">
-                                            <div class="step-indicator">
-                                                <span class="step-check">✓</span>
-                                                </div>
-                                            <div class="step-line"></div>
-                                            <span class="step-label">Informations personnelles</span>
-                                            </div>
-                                        <div class="step-item active" data-step="2">
-                                            <div class="step-indicator">
-                                                <span class="step-number">2</span>
-                                                </div>
-                                            <div class="step-line"></div>
-                                            <span class="step-label">Carte et paiement</span>
-                                            </div>
-                                        <div class="step-item" data-step="3">
-                                            <div class="step-indicator">
-                                                <span class="step-number">3</span>
-                                            </div>
-                                            <span class="step-label">Récapitulatif</span>
-                                        </div>
+                                    <!-- Titre incitatif -->
+                                    <div class="hero-callout">
+                                        <h2>
+                                            Achetez ou rechargez votre carte GDA Money
+                                        </h2>
+                                        <p>
+                                            Commandez une carte prépayée ou créditez-la en quelques clics.
+                                        </p>
                                     </div>
 
                                     <form id="orderForm" class="payment-form" novalidate onsubmit="return false;">
@@ -1543,28 +1585,28 @@
 
                                                 <div class="form-field">
                                                     <label for="firstName">Prénom</label>
-                                                    <input type="text" id="firstName" name="firstName" placeholder="Jean" required>
+                                                    <input type="text" id="firstName" name="firstName" placeholder="Moussa" required>
                                                 </div>
 
                                                 <div class="form-field">
                                                     <label for="lastName">Nom</label>
-                                                    <input type="text" id="lastName" name="lastName" placeholder="Dupont" required>
+                                                    <input type="text" id="lastName" name="lastName" placeholder="Diallo" required>
                                                 </div>
 
                                                 <div class="form-field">
                                                     <label for="email">Email (optionnel)</label>
-                                                    <input type="email" id="email" name="email" placeholder="jean.dupont@email.com">
+                                                    <input type="email" id="email" name="email" placeholder="moussadiallo@email.com">
                                                 </div>
 
                                                 <div class="form-field">
                                                     <label for="phone">Téléphone</label>
-                                                    <input type="tel" id="phone" name="phone" placeholder="+225 01 23 45 67" required>
+                                                    <input type="tel" id="phone" name="phone" placeholder="+2223 71 23 45 67" required>
                                                 </div>
 
                                                 <!-- Achat de carte -->
                                                 <div class="form-field" data-section="achat">
                                                     <label for="district">Quartier</label>
-                                                    <input type="text" id="district" name="district" placeholder="Plateau, Cocody..." required>
+                                                    <input type="text" id="district" name="district" placeholder="Aci 2000, Niamana..." required>
                                                 </div>
                                                 <div class="form-field" data-section="achat">
                                                     <label for="idDocument">Photo de la pièce d'identité</label>
@@ -1905,37 +1947,45 @@
                         <div class="row gx-0">
                             <div class="col-xl-3 col-lg-6 col-md-6">
                                 <div class="td-counter-4-item p-relative">
-                                    <h2 class="title mb-135"><span class="odometer" data-count="970">0</span>+</h2>
+                                    <div class="title mb-135">
+                                        <img class="counter-img" src="Assetsmoney/icones/mobile-banking.png" alt="Paiements en ligne">
+                                    </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h5 class="position">01</h5>
-                                        <span class="para">Projects<br> completed</span>
+                                        <span class="para">Paiements<br> en ligne</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-md-6">
                                 <div class="td-counter-4-item p-relative">
-                                    <h2 class="title mb-135"><span class="odometer" data-count="18">0</span>+</h2>
+                                    <div class="title mb-135">
+                                        <img class="counter-img" src="Assetsmoney/icones/atm.png" alt="Retraits distributeurs">
+                                    </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h5 class="position">02</h5>
-                                        <span class="para">Years of <br> experience</span>
+                                        <span class="para">Retraits aux <br> distributeurs</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-md-6">
                                 <div class="td-counter-4-item p-relative">
-                                    <h2 class="title mb-135"><span class="odometer" data-count="120">0</span>K</h2>
+                                    <div class="title mb-135">
+                                        <img class="counter-img" src="Assetsmoney/icones/credit-card.png" alt="Recharges instantanées">
+                                    </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h5 class="position">03</h5>
-                                        <span class="para">Happy <br> customers</span>
+                                        <span class="para">Recharges <br> instantanées</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-6 col-md-6">
                                 <div class="td-counter-4-item p-relative">
-                                    <h2 class="title mb-135"><span class="odometer" data-count="25">0</span>+</h2>
+                                    <div class="title mb-135">
+                                        <img class="counter-img" src="Assetsmoney/icones/customer-support.png" alt="Support client">
+                                    </div>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h5 class="position">04</h5>
-                                        <span class="para">Award <br> winning</span>
+                                        <span class="para">Support <br> 24/7</span>
                                     </div>
                                 </div>
                             </div>
@@ -2018,60 +2068,13 @@
                 </div>
                 <!-- td-feature-area-end -->
 
-                <!-- td-brands-area-start -->
-                <div class="td-brands-area pt-115">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="td-brand-wrap">
-                                    <div class="swiper-container td-brand-slide-active">
-                                        <div class="swiper-wrapper slide-transtion">
-                                            <div class="swiper-slide">
-                                                <div class="td-brand-item">
-                                                    <img src="assets/img/brand/logo-1.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="td-brand-item">
-                                                    <img src="assets/img/brand/logo-2.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="td-brand-item">
-                                                    <img src="assets/img/brand/logo-3.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="td-brand-item">
-                                                    <img src="assets/img/brand/logo-4.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="td-brand-item">
-                                                    <img src="assets/img/brand/logo-5.png" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="td-brand-item">
-                                                    <img src="assets/img/brand/logo-3.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- td-brands-area-end -->
-
                 <!-- td-faq-2-area-start -->
                 <div class="td-faq-2-area pt-160">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="td-faq-2-thumb mb-30 wow fadeInLeft fix td-rounded-10" data-wow-delay=".5s" data-wow-duration="1s">
-                                    <img data-speed=".9" class="td-rounded-10" src="assets/img/faq/faq-2/thumb.jpg" alt="">
+                                    <img data-speed=".9" class="td-rounded-10" src="Assetsmoney/accueil/faq.jpg" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -2214,20 +2217,20 @@
                 
 
                 <!-- td-achievement-area-start -->
-                <div class="td-achievement-area include-bg pt-155 pb-130" data-background="assets/img/achivment/bg.jpg">
+                <div class="td-achievement-area include-bg pt-155 pb-130" data-background="Assetsmoney/accueil/bg.jpg">
                     <div class="container">
                         <div class="row justify-content-center mb-60">
                             <div class="col-xl-8 col-lg-10">
                                 <div class="td-achievement-title-wrap text-center mb-60 td-title-anim">
-                                    <span class="td-section-2-subtitle mb-30 d-block">//  Parody working process</span>
-                                    <h2 class="td-section-2-title d-inline-block mb-30">Amazing interactive design
-                                        and user experience for
-                                        better <span>productivity</span></h2>
+                                    <span class="td-section-2-subtitle mb-30 d-block">//  FAQ & Assistance GDA Money</span>
+                                    <h2 class="td-section-2-title d-inline-block mb-30">Toutes les réponses sur vos cartes
+                                        et vos rechargements pour
+                                        un service <span>rapide et sécurisé</span></h2>
                                     <div class="td-btn-group justify-content-center  td-btn-group-yellow">
                                         <a class="td-btn-circle" href="contact.html">
                                             <i class="fa-solid fa-arrow-right"></i>
                                         </a>
-                                        <a class="td-btn-2 td-btn-primary" href="contact.html">LET’S GET CONNECTED</a>
+                                        <a class="td-btn-2 td-btn-primary" href="contact.html">CONTACTEZ-NOUS</a>
                                         <a class="td-btn-circle" href="contact.html">
                                             <i class="fa-solid fa-arrow-right"></i>
                                         </a>
@@ -2238,26 +2241,26 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-6 cil-sm-6 wow fadeInUp" data-wow-delay=".3s" data-wow-duration="1s">
                                 <div class="td-achievement-item text-center mb-30">
-                                    <img class="mb-20" src="assets/img/achivment/icon.png" alt="">
-                                    <p>100% Job Success on <br>Upwork</p>
+                                    <img class="mb-20 ach-icon" src="Assetsmoney/icones/1.png" alt="">
+                                    <p>Activation de carte<br> en moins de 24h</p>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 cil-sm-6 wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">
                                 <div class="td-achievement-item text-center mb-30">
-                                    <img class="mb-20" src="assets/img/achivment/icon-2.png" alt="">
-                                    <p>5 Stars Rating on<br>  GoodFirms</p>
+                                    <img class="mb-20 ach-icon" src="Assetsmoney/icones/2.png" alt="">
+                                    <p>Support client<br> disponible 24/7</p>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 cil-sm-6 wow fadeInUp" data-wow-delay=".7s" data-wow-duration="1s">
                                 <div class="td-achievement-item text-center mb-30">
-                                    <img class="mb-20" src="assets/img/achivment/icon-3.png" alt="">
-                                    <p>Top 100 Global Companies<br> on Clutch</p>
+                                    <img class="mb-20 ach-icon" src="Assetsmoney/icones/3.png" alt="">
+                                    <p>Recharges rapides et sécurisées</p>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 cil-sm-6 wow fadeInUp" data-wow-delay=".9s" data-wow-duration="1s">
                                 <div class="td-achievement-item text-center mb-30">
-                                    <img class="mb-20" src="assets/img/achivment/icon-4.png" alt="">
-                                    <p>#1 Team in the world<br> on Dribbble</p>
+                                    <img class="mb-20 ach-icon" src="Assetsmoney/icones/4.png" alt="">
+                                    <p>Paiement facile<br> en ligne</p>
                                 </div>
                             </div>
                         </div>
@@ -2284,40 +2287,40 @@
                         <div class="swiper-container td-contact-7-slide-active">
                             <div class="swiper-wrapper slide-transtion">
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text">Work</h2>
+                                    <h2 class="td-contact-7-slide-text">GDA</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text yellows">TOGETHER</h2>
+                                    <h2 class="td-contact-7-slide-text yellows">Money</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text">Work</h2>
+                                    <h2 class="td-contact-7-slide-text">GDA</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text yellows">TOGETHER</h2>
+                                    <h2 class="td-contact-7-slide-text yellows">Money</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text">Work</h2>
+                                    <h2 class="td-contact-7-slide-text">GDA</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text yellows">TOGETHER</h2>
+                                    <h2 class="td-contact-7-slide-text yellows">Money</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text">Work</h2>
+                                    <h2 class="td-contact-7-slide-text">GDA</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text yellows">TOGETHER</h2>
+                                    <h2 class="td-contact-7-slide-text yellows">Money</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text">Work</h2>
+                                    <h2 class="td-contact-7-slide-text">GDA</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text yellows">TOGETHER</h2>
+                                    <h2 class="td-contact-7-slide-text yellows">Money</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text">Work</h2>
+                                    <h2 class="td-contact-7-slide-text">GDA</h2>
                                 </div>
                                 <div class="swiper-slide">
-                                    <h2 class="td-contact-7-slide-text yellows">TOGETHER</h2>
+                                    <h2 class="td-contact-7-slide-text yellows">Money</h2>
                                 </div>
                             </div>
                         </div>
@@ -2335,7 +2338,7 @@
                         <div class="row">
                             <div class="col-lg-6 mb-30">
                                 <div class="td-footer-3-widget">
-                                    <h2 class="td-footer-2-bigtitle">Entrust design<br> to professionals</h2>
+                                    <h2 class="td-footer-2-bigtitle">GDA Money<br> votre partenaire de confiance</h2>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
@@ -2365,17 +2368,16 @@
                                 <div class="col-lg-8">
                                     <div class="td-footer-3-menu mb-10">
                                         <ul>
-                                            <li><a href="#">Project </a></li>
-                                            <li><a href="#">What we do</a></li>
-                                            <li><a href="#">About</a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Contact</a></li>
+                                            <li><a href="index.html">Accueil </a></li>
+                                            <li><a href="#services">Nos Fonctionnalités</a></li>
+                                            <li><a href="#order-form">Acheter une carte</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="td-footer-3-copyright text-lg-end mb-10">
-                                        <p>© 2025 <a href="#">Parody.</a> All Rights Reserved.</p>
+                                        <p>© Groupe GDA. Tous droits réservés.</p>
                                     </div>
                                 </div>
                             </div>
@@ -2462,6 +2464,33 @@
                 
                 lastScrollTop = scrollTop;
             }, { passive: true });
+        })();
+    </script>
+    
+    <!-- Smooth scroll pour la nav (one-page) + fermeture du menu mobile -->
+    <script>
+        (function() {
+            const header = document.getElementById('header-sticky');
+            const navLinks = document.querySelectorAll('.navigation a[href^="#"], .td-btn-group a[href^="#"], .tdmobile__menu a[href^="#"], .td-footer-3-menu a[href^="#"]');
+            const closeMobileMenu = () => {
+                document.body.classList.remove('mobile-menu-visible');
+            };
+            navLinks.forEach((link) => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (!targetEl) return;
+                    e.preventDefault();
+                    closeMobileMenu();
+                    // Petit délai pour laisser le menu se fermer avant le scroll
+                    setTimeout(() => {
+                        const headerOffset = (header && header.classList.contains('header-sticky')) ? header.offsetHeight : 0;
+                        const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }, 50);
+                }, { passive: false });
+            });
         })();
     </script>
     
