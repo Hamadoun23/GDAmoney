@@ -3995,12 +3995,26 @@ textarea {
 }
 .td-hero-2-thumb .thumb-1 {
   transform: rotate(-15deg);
-  margin-left: 55px;
-  width: 295px;
+  margin-left: 0;
+  width: 560px;
+  max-width: 100%;
+  height: auto;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  display: block;
+  object-fit: contain;
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 100%);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .td-hero-2-thumb .thumb-1 {
-    width: 195px;
+    width: 420px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
